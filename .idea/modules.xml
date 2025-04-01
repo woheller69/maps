@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Maps.iml" filepath="$PROJECT_DIR$/Maps.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Maps.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Maps.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Maps.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Maps.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Maps.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Maps.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Maps.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Maps.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GmapsWV.iml" filepath="$PROJECT_DIR$/.idea/modules/GmapsWV.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GmapsWV.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GmapsWV.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GmapsWV.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GmapsWV.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GmapsWV.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GmapsWV.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/GmapsWV.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/GmapsWV.app.unitTest.iml" />
     </modules>
   </component>
 </project>

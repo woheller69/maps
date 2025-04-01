@@ -22,7 +22,6 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
@@ -40,15 +39,13 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
-import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,7 +62,6 @@ public class MainActivity extends Activity {
     private static final ArrayList<String> allowedDomainsEnd = new ArrayList<String>();
     private static final ArrayList<String> blockedURLs = new ArrayList<String>();
 
-    private static final DateFormat consentDateFormat = new SimpleDateFormat("yyyyMMdd");
     private static final String TAG = "GMapsWV";
     private static LocationListener locationListenerGPS;
     private static final boolean canUseLocation = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
@@ -122,13 +118,6 @@ public class MainActivity extends Activity {
         mapsCookieManager.setAcceptCookie(true);
         mapsCookieManager.setAcceptThirdPartyCookies(mapsWebView, false);
 
-        //Delete anything from previous sessions
-        resetWebView(false);
-
-        //Set the consent cookie to prevent unnecessary redirections
-        setConsentCookie();
-
-        //Restrict what gets loaded
         initURLs();
 
         //Lister for Link sharing
@@ -170,6 +159,7 @@ public class MainActivity extends Activity {
             //Keep these in sync!
             @Override
             public WebResourceResponse shouldInterceptRequest(final WebView view, WebResourceRequest request) {
+                Log.d(TAG,"URL=" + request.getUrl().toString());
                 if (request.getUrl().toString().equals("about:blank")) {
                     return null;
                 }
@@ -212,6 +202,7 @@ public class MainActivity extends Activity {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                Log.d(TAG,"URL=" + request.getUrl().toString());
                 if (request.getUrl().toString().equals("about:blank")) {
                     return false;
                 }
@@ -222,6 +213,19 @@ public class MainActivity extends Activity {
                 }
                 if (!request.getUrl().toString().startsWith("https://")) {
                     Log.d(TAG, "[shouldOverrideUrlLoading][NON-HTTPS] Blocked access to " + request.getUrl().toString());
+                    if (request.getUrl().toString().startsWith("intent://maps.app.goo.gl/?link=")){
+                        String url = request.getUrl().toString();
+                        Log.d(TAG, url);
+                        String encodedURL = url.split("intent://maps\\.app\\.goo\\.gl/\\?link=")[1];
+                        try {
+                            String decodedURL = URLDecoder.decode(encodedURL, "UTF-8");
+                            Log.d(TAG, decodedURL);
+                            mapsWebView.loadUrl(decodedURL);
+                        } catch (UnsupportedEncodingException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
                     return true; //Deny URLs that aren't HTTPS
                 }
                 boolean allowed = false;
@@ -304,16 +308,10 @@ public class MainActivity extends Activity {
             mapsWebView.removeAllViews();
             mapsWebSettings.setJavaScriptEnabled(false);
         }
-        //mapsWebView.clearCache(true);
         mapsWebView.clearFormData();
         mapsWebView.clearHistory();
         mapsWebView.clearMatches();
         mapsWebView.clearSslPreferences();
-        mapsCookieManager.removeSessionCookie();
-        mapsCookieManager.removeAllCookie();
-        CookieManager.getInstance().removeAllCookies(null);
-        CookieManager.getInstance().flush();
-        WebStorage.getInstance().deleteAllData();
         if (exit) {
             mapsWebView.destroyDrawingCache();
             mapsWebView.destroy();
@@ -321,24 +319,11 @@ public class MainActivity extends Activity {
         }
     }
 
-    private void setConsentCookie() {
-        String consentDate = consentDateFormat.format(System.currentTimeMillis());
-        Random random = new Random();
-        int random2digit = random.nextInt(2) + 15;
-        int random3digit = random.nextInt(999);
-        String consentCookie = "YES+cb." + consentDate + "-" + random2digit + "-p1.en+F+" + random3digit;
-        mapsCookieManager.setCookie(".google.com", "CONSENT=" + consentCookie + ";");
-        //mapsCookieManager.setCookie(".google.com", "CONSENT=PENDING+" + random3digit + ";"); //alternative
-        mapsCookieManager.setCookie(".google.com", "ANID=OPT_OUT;");
-    }
-
     private static void initURLs() {
         //Allowed Domains
         allowedDomains.add("apis.google.com");
         allowedDomains.add("consent.google.com");
-        allowedDomains.add("consent.youtube.com"); //XXX: Maybe not required?
         allowedDomains.add("fonts.gstatic.com");
-        //allowedDomains.add("goo.gl");
         allowedDomains.add("google.com");
         allowedDomains.add("khms0.google.com");
         allowedDomains.add("khms1.google.com");

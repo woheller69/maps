@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 33
+    compileSdk 34
     defaultConfig {
         applicationId "us.spotco.maps"
         minSdkVersion 21
-        targetSdkVersion 32
+        targetSdk 34
         versionCode 37
         versionName "1.12"
-        resConfigs 'en', 'pt', 'es', 'de', 'fi', 'hr', 'pl', 'pt-rBR', 'uk', 'zh-rCN', 'ar', 'bg', 'cs', 'et', 'fr', 'gl', 'in', 'it', 'ru'
     }
     buildTypes {
         debug {
