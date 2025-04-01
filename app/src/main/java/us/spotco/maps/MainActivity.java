@@ -159,7 +159,6 @@ public class MainActivity extends Activity {
             //Keep these in sync!
             @Override
             public WebResourceResponse shouldInterceptRequest(final WebView view, WebResourceRequest request) {
-                Log.d(TAG,"URL=" + request.getUrl().toString());
                 if (request.getUrl().toString().equals("about:blank")) {
                     return null;
                 }
@@ -202,7 +201,6 @@ public class MainActivity extends Activity {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                Log.d(TAG,"URL=" + request.getUrl().toString());
                 if (request.getUrl().toString().equals("about:blank")) {
                     return false;
                 }
@@ -215,11 +213,9 @@ public class MainActivity extends Activity {
                     Log.d(TAG, "[shouldOverrideUrlLoading][NON-HTTPS] Blocked access to " + request.getUrl().toString());
                     if (request.getUrl().toString().startsWith("intent://maps.app.goo.gl/?link=")){
                         String url = request.getUrl().toString();
-                        Log.d(TAG, url);
                         String encodedURL = url.split("intent://maps\\.app\\.goo\\.gl/\\?link=")[1];
                         try {
                             String decodedURL = URLDecoder.decode(encodedURL, "UTF-8");
-                            Log.d(TAG, decodedURL);
                             mapsWebView.loadUrl(decodedURL);
                         } catch (UnsupportedEncodingException e) {
                             throw new RuntimeException(e);
