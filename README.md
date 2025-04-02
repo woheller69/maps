@@ -10,6 +10,7 @@ Or via this link (with fees)
 
 GMaps WV
 ========
+Forked from https://github.com/Divested-Mobile/maps which has been archived by the developer.
 
 Overview
 --------
@@ -32,7 +33,6 @@ Downsides
 - Navigation is not available, only turn-by-turn direction list
 - WebRTC isn't blocked due to WebView limitations
 - Cache isn't cleared due to resource/data considerations, however could allow tracking without other data (cookies)
-  - Manually clear app cache if necessary, may be addressed in future
 
 Credits
 -------
