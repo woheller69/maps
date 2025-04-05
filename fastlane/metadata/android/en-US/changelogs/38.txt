@@ -1,0 +1,2 @@
+do not delete cookies to avoid consent every time
+make route planner usable
