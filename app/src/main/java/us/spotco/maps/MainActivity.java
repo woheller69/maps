@@ -39,6 +39,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
+import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -117,7 +118,7 @@ public class MainActivity extends Activity {
         mapsCookieManager = CookieManager.getInstance();
         mapsCookieManager.setAcceptCookie(true);
         mapsCookieManager.setAcceptThirdPartyCookies(mapsWebView, false);
-
+        mapsCookieManager.setCookie(".google.com", "SOCS=CAI;");
         initURLs();
 
         //Lister for Link sharing
@@ -252,6 +253,24 @@ public class MainActivity extends Activity {
                 }
                 return false;
             }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                //Remove Banner
+                view.evaluateJavascript("var head = document.getElementsByTagName('head');\n" +
+                        "if (head.length > 0) {\n" +
+                        "    var style = document.createElement('style');\n" +
+                        "    style.setAttribute('type', 'text/css');\n" +
+                        "    style.textContent = `.ml-persistent-promo-banner {\n" +
+                        "        display: none !important;\n" +
+                        "    }\n" +
+                        "    #app {\n" +
+                        "        top: 0 !important\n" +
+                        "    }`;\n" +
+                        "    head[0].appendChild(style);\n" +
+                        "}",null);
+            }
         });
 
         //Set more options
@@ -308,6 +327,11 @@ public class MainActivity extends Activity {
         mapsWebView.clearHistory();
         mapsWebView.clearMatches();
         mapsWebView.clearSslPreferences();
+        mapsCookieManager.removeSessionCookie();
+        mapsCookieManager.removeAllCookie();
+        CookieManager.getInstance().removeAllCookies(null);
+        CookieManager.getInstance().flush();
+        WebStorage.getInstance().deleteAllData();
         if (exit) {
             mapsWebView.destroyDrawingCache();
             mapsWebView.destroy();
