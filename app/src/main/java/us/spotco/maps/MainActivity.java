@@ -288,7 +288,7 @@ public class MainActivity extends Activity {
         mapsWebSettings.setDomStorageEnabled(false);
         mapsWebSettings.setSaveFormData(false);
         //Change the User-Agent
-        mapsWebSettings.setUserAgentString("Mozilla/5.0 (Linux; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36");
+        mapsWebSettings.setUserAgentString("Mozilla/5.0 (Linux; Unspecified Device) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Mobile Safari/537.36");
 
         //Load Google Maps
         mapsWebView.loadUrl(urlToLoad);
