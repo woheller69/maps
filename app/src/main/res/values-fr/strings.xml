@@ -6,4 +6,6 @@
     <string name="error_no_gps">Veuillez activer le GPS</string>
     <string name="no_app_installed">Pas d\'application installée</string>
     <string name="intent_string">Ouvrir dans la webview restreinte</string>
+    <string name="title_open_link">Ouvrir le lien</string>
+    <string name="text_open_link">Ouvrir dans le navigateur externe ? %s</string>
 </resources>
