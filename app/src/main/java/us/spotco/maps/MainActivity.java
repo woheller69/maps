@@ -22,6 +22,7 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
@@ -243,6 +244,21 @@ public class MainActivity extends Activity {
                 }
                 if (!allowed) {
                     Log.d(TAG, "[shouldOverrideUrlLoading][NOT ON ALLOWLIST] Blocked access to " + request.getUrl().getHost());
+                    if (request.getUrl().toString().startsWith("https://")) {
+                        (new AlertDialog.Builder(context)
+                            .setTitle(R.string.title_open_link)
+                            .setMessage(context.getString(R.string.text_open_link, request.getUrl().toString()))
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .setPositiveButton(
+                                android.R.string.ok,
+                                (dialogInterface, i) ->
+                                    startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()))
+                            )
+                        )
+                        .create()
+                        .show();
+                    }
+
                     return true; //Deny URLs not on ALLOWLIST
                 }
                 for (String url : blockedURLs) {
