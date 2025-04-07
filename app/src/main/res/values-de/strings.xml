@@ -5,5 +5,5 @@
     <string name="title_location_permission">Standortfreigabe</string>
     <string name="text_location_permission">Bitte die Standordfreigabe gewähren und die Funktion erneut aufrufen.</string>
     <string name="error_no_gps">Bitte GPS aktivieren</string>
-    <string name="no_app_installed">Keine app installiert</string>
+    <string name="no_app_installed">Keine App installiert</string>
 </resources>
