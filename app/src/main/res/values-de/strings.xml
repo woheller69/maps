@@ -6,4 +6,6 @@
     <string name="text_location_permission">Bitte die Standordfreigabe gewähren und die Funktion erneut aufrufen.</string>
     <string name="error_no_gps">Bitte GPS aktivieren</string>
     <string name="no_app_installed">Keine App installiert</string>
+    <string name="title_open_link">Link öffnen</string>
+    <string name="text_open_link">In externem Browser öffnen? %s</string>
 </resources>
