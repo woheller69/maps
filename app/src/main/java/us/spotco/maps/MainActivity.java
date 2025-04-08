@@ -308,6 +308,7 @@ public class MainActivity extends Activity {
 
         //Load Google Maps
         mapsWebView.loadUrl(urlToLoad);
+        if (GithubStar.shouldShowStarDialog(this)) GithubStar.starDialog(this, "https://github.com/woheller69/maps");
     }
 
     @Override

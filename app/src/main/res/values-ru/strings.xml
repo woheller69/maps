@@ -3,4 +3,6 @@
     <string name="intent_string">Открыть в ограниченном веб-просмотре</string>
     <string name="title_location_permission">Разрешение на местоположение</string>
     <string name="error_no_gps">Пожалуйста, активируйте GPS</string>
+    <string name="dialog_StarOnGitHub">Вам нравится это приложение? Пожалуйста, поставьте звёздочку на GitHub или купите разработчику кофе через PayPal.</string>
+    <string name="dialog_Later_button">Может быть позже</string>
 </resources>

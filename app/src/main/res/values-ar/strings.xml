@@ -6,4 +6,6 @@
     <string name="intent_string">افتح في webview مقيد</string>
     <string name="no_app_installed">لم يتم تثبيت أي تطبيق</string>
     <string name="text_location_permission">يُرجى منح إذن الموقع ثم اضغط على الزر مرة أخرى.</string>
+    <string name="dialog_Later_button">ربما لاحقًا</string>
+    <string name="dialog_StarOnGitHub">هل أعجبك هذا التطبيق؟ الرجاء منح نجمة على GitHub أو شراء قهوة للمطور عبر PayPal.</string>
 </resources>

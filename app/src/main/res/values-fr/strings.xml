@@ -8,4 +8,6 @@
     <string name="intent_string">Ouvrir dans la webview restreinte</string>
     <string name="title_open_link">Ouvrir le lien</string>
     <string name="text_open_link">Ouvrir dans le navigateur externe ? %s</string>
+    <string name="dialog_StarOnGitHub">Vous appréciez cette application? Donnez une étoile sur GitHub ou offrez un café au développeur via PayPal.</string>
+    <string name="dialog_Later_button">Plus tard, peut-être</string>
 </resources>
