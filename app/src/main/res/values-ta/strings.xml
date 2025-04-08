@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gmaps wv</string>
+    <string name="intent_string">தடைசெய்யப்பட்ட வெப்வியூவில் திறக்கவும்</string>
+    <string name="error_no_gps">சி.பி.எச்சை செயல்படுத்தவும்</string>
+    <string name="title_location_permission">இருப்பிட இசைவு</string>
+    <string name="text_location_permission">இருப்பிட இசைவு வழங்கவும், மீண்டும் பொத்தானை அழுத்தவும்.</string>
+    <string name="no_app_installed">பயன்பாடு எதுவும் நிறுவப்படவில்லை</string>
+</resources>

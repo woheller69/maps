@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="text_location_permission">Attiva i permessi di localizzazione e previ nuovamente il pulsante.</string>
+    <string name="text_location_permission">Attiva i permessi di localizzazione e premi nuovamente il pulsante.</string>
     <string name="error_no_gps">Per favore, attiva il GPS</string>
     <string name="no_app_installed">Nessuna app installata</string>
     <string name="app_name">Mappe Google WV</string>

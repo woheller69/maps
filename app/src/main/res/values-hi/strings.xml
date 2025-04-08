@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intent_string">प्रतिबंधित वेबव्यू में खोलें</string>
+    <string name="app_name">जीमैप्स डब्ल्यू वी</string>
+    <string name="title_location_permission">स्थान अनुमति</string>
+    <string name="text_location_permission">कृपया स्थान की अनुमति दें और पुनः दबाएँ।</string>
+    <string name="error_no_gps">कृपया जीपीएस सक्रिय करें</string>
+    <string name="no_app_installed">कोई अनुप्रयोग स्थापित नहीं हे</string>
+</resources>
