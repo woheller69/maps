@@ -22,7 +22,6 @@ import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
@@ -117,6 +116,7 @@ public class MainActivity extends Activity {
 
         //Set cookie options
         mapsCookieManager = CookieManager.getInstance();
+        resetWebView(false);
         mapsCookieManager.setAcceptCookie(true);
         mapsCookieManager.setAcceptThirdPartyCookies(mapsWebView, false);
         mapsCookieManager.setCookie(".google.com", "SOCS=CAI;");
@@ -313,8 +313,8 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         resetWebView(true);
+        super.onDestroy();
     }
 
     @Override
@@ -335,21 +335,20 @@ public class MainActivity extends Activity {
     }
 
     private void resetWebView(boolean exit) {
-        if (exit) {
-            mapsWebView.loadUrl("about:blank");
-            mapsWebView.removeAllViews();
-            mapsWebSettings.setJavaScriptEnabled(false);
-        }
         mapsWebView.clearFormData();
         mapsWebView.clearHistory();
         mapsWebView.clearMatches();
         mapsWebView.clearSslPreferences();
+        mapsWebView.clearCache(true);
         mapsCookieManager.removeSessionCookie();
         mapsCookieManager.removeAllCookie();
         CookieManager.getInstance().removeAllCookies(null);
         CookieManager.getInstance().flush();
         WebStorage.getInstance().deleteAllData();
         if (exit) {
+            mapsWebView.loadUrl("about:blank");
+            mapsWebView.removeAllViews();
+            mapsWebSettings.setJavaScriptEnabled(false);
             mapsWebView.destroyDrawingCache();
             mapsWebView.destroy();
             mapsWebView = null;
