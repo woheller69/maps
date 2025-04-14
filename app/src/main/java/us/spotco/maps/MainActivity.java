@@ -361,6 +361,7 @@ public class MainActivity extends Activity {
         allowedDomains.add("consent.google.com");
         allowedDomains.add("fonts.gstatic.com");
         allowedDomains.add("google.com");
+        allowedDomains.add("gstatic.com");
         allowedDomains.add("khms0.google.com");
         allowedDomains.add("khms1.google.com");
         allowedDomains.add("khms2.google.com");
