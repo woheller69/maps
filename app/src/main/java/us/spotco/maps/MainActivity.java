@@ -166,9 +166,18 @@ public class MainActivity extends Activity {
                 }
                 if (!request.getUrl().toString().startsWith("https://")) {
                     Log.d(TAG, "[shouldInterceptRequest][NON-HTTPS] Blocked access to " + request.getUrl().toString());
-                    return new WebResourceResponse("text/javascript", "UTF-8", null); //Deny URLs that aren't HTTPS
+                    return new WebResourceResponse("text/javascript", "UTF-8", null); // Deny URLs that aren't HTTPS
                 }
                 boolean allowed = false;
+
+                // Special handling for gstatic.com
+                if (request.getUrl().getHost().equals("gstatic.com")) {
+                    String path = request.getUrl().getPath();
+                    if (path != null && path.startsWith("/local/placeinfo/")) {
+                        allowed = true; // Allow gstatic.com with the specific path
+                    }
+                }
+
                 for (String url : allowedDomains) {
                     if (request.getUrl().getHost().equals(url)) {
                         allowed = true;
@@ -186,7 +195,7 @@ public class MainActivity extends Activity {
                 }
                 if (!allowed) {
                     Log.d(TAG, "[shouldInterceptRequest][NOT ON ALLOWLIST] Blocked access to " + request.getUrl().getHost());
-                    return new WebResourceResponse("text/javascript", "UTF-8", null); //Deny URLs not on ALLOWLIST
+                    return new WebResourceResponse("text/javascript", "UTF-8", null); // Deny URLs not on ALLOWLIST
                 }
                 for (String url : blockedURLs) {
                     if (request.getUrl().toString().contains(url)) {
@@ -195,7 +204,7 @@ public class MainActivity extends Activity {
                         } else {
                             Log.d(TAG, "[shouldInterceptRequest][ON DENYLIST] Blocked access to " + request.getUrl().toString());
                         }
-                        return new WebResourceResponse("text/javascript", "UTF-8", null); //Deny URLs on DENYLIST
+                        return new WebResourceResponse("text/javascript", "UTF-8", null); // Deny URLs on DENYLIST
                     }
                 }
                 return null;
@@ -213,7 +222,7 @@ public class MainActivity extends Activity {
                 }
                 if (!request.getUrl().toString().startsWith("https://")) {
                     Log.d(TAG, "[shouldOverrideUrlLoading][NON-HTTPS] Blocked access to " + request.getUrl().toString());
-                    if (request.getUrl().toString().startsWith("intent://maps.app.goo.gl/?link=")){
+                    if (request.getUrl().toString().startsWith("intent://maps.app.goo.gl/?link=")) {
                         String url = request.getUrl().toString();
                         String encodedURL = url.split("intent://maps\\.app\\.goo\\.gl/\\?link=")[1];
                         try {
@@ -222,11 +231,19 @@ public class MainActivity extends Activity {
                         } catch (UnsupportedEncodingException e) {
                             throw new RuntimeException(e);
                         }
-
                     }
-                    return true; //Deny URLs that aren't HTTPS
+                    return true; // Deny URLs that aren't HTTPS
                 }
                 boolean allowed = false;
+
+                // Special handling for gstatic.com
+                if (request.getUrl().getHost().equals("gstatic.com")) {
+                    String path = request.getUrl().getPath();
+                    if (path != null && path.startsWith("/local/placeinfo/")) {
+                        allowed = true; // Allow gstatic.com with the specific path
+                    }
+                }
+
                 for (String url : allowedDomains) {
                     if (request.getUrl().getHost().equals(url)) {
                         allowed = true;
@@ -246,25 +263,24 @@ public class MainActivity extends Activity {
                     Log.d(TAG, "[shouldOverrideUrlLoading][NOT ON ALLOWLIST] Blocked access to " + request.getUrl().getHost());
                     if (request.getUrl().toString().startsWith("https://")) {
                         (new AlertDialog.Builder(context)
-                            .setTitle(R.string.title_open_link)
-                            .setMessage(context.getString(R.string.text_open_link, request.getUrl().toString()))
-                            .setNegativeButton(android.R.string.cancel, null)
-                            .setPositiveButton(
-                                android.R.string.ok,
-                                (dialogInterface, i) ->
-                                    startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()))
-                            )
+                                .setTitle(R.string.title_open_link)
+                                .setMessage(context.getString(R.string.text_open_link, request.getUrl().toString()))
+                                .setNegativeButton(android.R.string.cancel, null)
+                                .setPositiveButton(
+                                        android.R.string.ok,
+                                        (dialogInterface, i) ->
+                                                startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()))
+                                )
                         )
-                        .create()
-                        .show();
+                                .create()
+                                .show();
                     }
-
-                    return true; //Deny URLs not on ALLOWLIST
+                    return true; // Deny URLs not on ALLOWLIST
                 }
                 for (String url : blockedURLs) {
                     if (request.getUrl().toString().contains(url)) {
                         Log.d(TAG, "[shouldOverrideUrlLoading][ON DENYLIST] Blocked access to " + request.getUrl().toString());
-                        return true; //Deny URLs on DENYLIST
+                        return true; // Deny URLs on DENYLIST
                     }
                 }
                 return false;
