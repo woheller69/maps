@@ -158,7 +158,6 @@ public class MainActivity extends Activity {
         });
 
         mapsWebView.setWebViewClient(new WebViewClient() {
-            //Keep these in sync!
             @Override
             public WebResourceResponse shouldInterceptRequest(final WebView view, WebResourceRequest request) {
                 if (request.getUrl().toString().equals("about:blank")) {
@@ -184,6 +183,7 @@ public class MainActivity extends Activity {
                         allowed = true;
                     }
                 }
+                if (request.getUrl().getHost().equals("gstatic.com") && request.getUrl().getPath().startsWith("/local/placeinfo/")) allowed = true;
                 if (!allowed) {
                     Log.d(TAG, "[shouldInterceptRequest][NOT ON ALLOWLIST] Blocked access to " + request.getUrl().getHost());
                     return new WebResourceResponse("text/javascript", "UTF-8", null); //Deny URLs not on ALLOWLIST
