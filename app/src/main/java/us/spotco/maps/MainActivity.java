@@ -222,7 +222,19 @@ public class MainActivity extends Activity {
                         } catch (UnsupportedEncodingException e) {
                             throw new RuntimeException(e);
                         }
-
+                    } else if (request.getUrl().toString().startsWith("http://")){
+                        new AlertDialog.Builder(context)
+                            .setTitle(R.string.title_open_link)
+                            .setIcon(R.drawable.ic_warning) // Set the alert icon
+                            .setMessage(context.getString(R.string.text_warning_link) + "\n\n" + context.getString(R.string.text_open_link, request.getUrl().toString()))
+                            .setNegativeButton(android.R.string.cancel, null)
+                            .setPositiveButton(
+                                    android.R.string.ok,
+                                    (dialogInterface, i) ->
+                                            startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()))
+                            )
+                            .create()
+                            .show();
                     }
                     return true; //Deny URLs that aren't HTTPS
                 }
@@ -245,7 +257,7 @@ public class MainActivity extends Activity {
                 if (!allowed) {
                     Log.d(TAG, "[shouldOverrideUrlLoading][NOT ON ALLOWLIST] Blocked access to " + request.getUrl().getHost());
                     if (request.getUrl().toString().startsWith("https://")) {
-                        (new AlertDialog.Builder(context)
+                        new AlertDialog.Builder(context)
                             .setTitle(R.string.title_open_link)
                             .setMessage(context.getString(R.string.text_open_link, request.getUrl().toString()))
                             .setNegativeButton(android.R.string.cancel, null)
@@ -254,9 +266,8 @@ public class MainActivity extends Activity {
                                 (dialogInterface, i) ->
                                     startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()))
                             )
-                        )
-                        .create()
-                        .show();
+                            .create()
+                            .show();
                     }
 
                     return true; //Deny URLs not on ALLOWLIST
