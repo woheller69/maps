@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">GMaps WV</string>
+    <string name="intent_string">بازکردن در مشاهده‌گر وب محدود شده</string>
+    <string name="title_location_permission">دسترسی مکان</string>
+    <string name="text_location_permission">لطفا دسترسی مکان را داده و دوباره روی دکمه ضربه بزنید</string>
+    <string name="error_no_gps">لطفا مکان‌یاب را روشن کنید</string>
+    <string name="no_app_installed">برنامه‌ای نصب نشده</string>
+    <string name="title_open_link">بازکردن پیوند</string>
+    <string name="text_open_link">بازکردن در مرورگر خارجی؟ %s</string>
+    <string name="dialog_StarOnGitHub">این برنامه رو دوست داشتید؟ لطفا به ما در گیت‌هاب ستاره دهید و یا در پی‌پال برای برنامه‌نویس قهوه بخرید</string>
+    <string name="dialog_Later_button">شاید بعدا</string>
+</resources>
