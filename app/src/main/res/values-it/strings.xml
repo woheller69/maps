@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">GMaps WV</string>
+    <string name="intent_string">Apri in una webview ristretta</string>
+    <string name="title_location_permission">Permessi di localizzazione</string>
     <string name="text_location_permission">Attiva i permessi di localizzazione e premi nuovamente il pulsante.</string>
     <string name="error_no_gps">Per favore, attiva il GPS</string>
     <string name="no_app_installed">Nessuna app installata</string>
-    <string name="app_name">Mappe Google WV</string>
-    <string name="intent_string">Apri in una webview ristretta</string>
-    <string name="title_location_permission">Permessi di localizzazione</string>
+    <string name="title_open_link">Apri link</string>
+    <string name="text_open_link">Vuoi aprire? %s</string>
+    <string name="text_warning_link">ATTENZIONE: Link non sicuro!</string>
+    <string name="dialog_StarOnGitHub">Ti piace questa app? Dai una stella su Github o compra un caffè allo sviluppatore via PayPal.</string>
+    <string name="dialog_Later_button">Forse più tardi</string>
 </resources>
