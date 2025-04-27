@@ -9,6 +9,6 @@
     <string name="title_open_link">Apri link</string>
     <string name="text_open_link">Vuoi aprire? %s</string>
     <string name="text_warning_link">ATTENZIONE: Link non sicuro!</string>
-    <string name="dialog_StarOnGitHub">Ti piace questa app? Dai una stella su Github o compra un caffè allo sviluppatore via PayPal.</string>
+    <string name="dialog_StarOnGitHub">Ti piace quest\'app? Dai una stella su Github oppure offri un caffè allo sviluppatore tramite PayPal.</string>
     <string name="dialog_Later_button">Forse più tardi</string>
 </resources>
