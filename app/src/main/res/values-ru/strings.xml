@@ -5,7 +5,6 @@
     <string name="error_no_gps">Пожалуйста, активируйте GPS</string>
     <string name="dialog_StarOnGitHub">Вам нравится это приложение? Пожалуйста, поставьте звёздочку на GitHub или купите разработчику кофе через PayPal.</string>
     <string name="dialog_Later_button">Может быть позже</string>
-    <string name="app_name">GMaps WV</string>
     <string name="text_location_permission">Пожалуйста, дайте разрешение на определение местоположения и нажмите кнопку еще раз.</string>
     <string name="no_app_installed">Приложение не установлено</string>
 </resources>

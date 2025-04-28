@@ -2,7 +2,6 @@
 <resources>
     <string name="error_no_gps">请激活 GPS</string>
     <string name="title_location_permission">位置权限</string>
-    <string name="app_name">GMaps WV</string>
     <string name="no_app_installed">App未安装</string>
     <string name="intent_string">在受限的WebView中打开</string>
     <string name="text_location_permission">请授予位置权限，然后再次按下按钮。</string>

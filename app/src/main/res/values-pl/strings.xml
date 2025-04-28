@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GMaps WV</string>
     <string name="intent_string">Otwórz w chronionym webview</string>
     <string name="title_location_permission">Dostęp do lokalizacji</string>
     <string name="text_location_permission">Prosimy udzielić dostępu do lokalizacji i nacisnąć przycisk ponownie.</string>

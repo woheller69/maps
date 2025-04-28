@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GMaps WV</string>
     <string name="title_location_permission">Accès à la localisation</string>
     <string name="text_location_permission">Veuillez donner l\'accès à la localisation et appuyer à nouveau sur le bouton.</string>
     <string name="error_no_gps">Veuillez activer le GPS</string>

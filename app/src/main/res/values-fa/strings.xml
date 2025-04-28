@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">GMaps WV</string>
     <string name="intent_string">بازکردن در مشاهده‌گر وب محدود شده</string>
     <string name="title_location_permission">دسترسی مکان</string>
     <string name="text_location_permission">لطفا دسترسی مکان را داده و دوباره روی دکمه ضربه بزنید</string>

@@ -3,7 +3,6 @@
     <string name="error_no_gps">Molimo aktivirajte GPS</string>
     <string name="title_location_permission">Dozvola za lokaciju</string>
     <string name="no_app_installed">Nema instalirane aplikacije</string>
-    <string name="app_name">GMaps WV</string>
     <string name="intent_string">Otvori u ograničenom web prikazu</string>
     <string name="text_location_permission">Molimo Vas dajte dopuštenje za lokaciju i ponovo pritisnite gumb.</string>
 </resources>

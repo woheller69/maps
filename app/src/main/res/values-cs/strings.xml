@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GMaps WV</string>
     <string name="intent_string">Otevřít v omezeném webovém zobrazení</string>
     <string name="title_location_permission">Oprávnění k poloze</string>
     <string name="text_location_permission">Udělte prosím oprávnění k poloze a znovu stiskněte tlačítko.</string>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">GMaps WV</string>
     <string name="intent_string">Abrir nunha webview con restricións</string>
     <string name="title_location_permission">Permiso de localización</string>
     <string name="text_location_permission">Concede permiso para a localización e preme outra vez no botón.</string>

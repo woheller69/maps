@@ -22,8 +22,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    lint {
+    lintOptions {
         abortOnError false
+        disable 'MissingTranslation'
     }
 }
 

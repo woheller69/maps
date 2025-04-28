@@ -5,5 +5,4 @@
     <string name="intent_string">നിയന്ത്രിത വെബ്‌വ്യൂവിൽ തുറക്കുക</string>
     <string name="text_location_permission">സ്ഥാന അനുമതി നൽകി വീണ്ടും അമർത്തുക.</string>
     <string name="no_app_installed">ഒരു പ്രയോഗവും സ്ഥാപിച്ചിട്ടില്ല</string>
-    <string name="app_name">ജിമാപ്സ് ഡബ്ല്യുവി</string>
 </resources>

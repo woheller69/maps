@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GMaps WV</string>
+    <string name="app_name" translatable="false">GMaps WV</string>
     <string name="intent_string">Open in restricted webview</string>
     <string name="title_location_permission">Location permission</string>
     <string name="text_location_permission">Please grant location permission and press button again.</string>

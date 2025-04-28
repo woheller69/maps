@@ -3,7 +3,6 @@
     <string name="intent_string">Отворете в ограничен уеб изглед</string>
     <string name="text_location_permission">Моля, дайте разрешение за местоположение и натиснете бутона отново.</string>
     <string name="no_app_installed">Няма инсталирано приложение</string>
-    <string name="app_name">GMaps уеб изглед</string>
     <string name="error_no_gps">Моля, активирайте GPS</string>
     <string name="title_location_permission">Разрешение за местоположение</string>
 </resources>
