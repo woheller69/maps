@@ -2,6 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdk 34
+    dependenciesInfo {
+        // Disable including dependency metadata when building APKs
+        includeInApk = false
+        // Disable including dependency metadata when building Android App Bundles
+        includeInBundle = false
+    }
     defaultConfig {
         applicationId "us.spotco.maps"
         minSdkVersion 21
