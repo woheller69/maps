@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name" translatable="false">GMaps WV</string>
     <string name="intent_string">Otevřít v omezeném webovém zobrazení</string>
-    <string name="title_location_permission">Oprávnění k poloze</string>
-    <string name="text_location_permission">Udělte prosím oprávnění k poloze a znovu stiskněte tlačítko.</string>
-    <string name="error_no_gps">Povolte prosím polohové služby</string>
+    <string name="title_location_permission">Přístup k poloze</string>
+    <string name="text_location_permission">Udělte přístup oprávnění k poloze a znovu stiskněte tlačítko.</string>
+    <string name="error_no_gps">Zapněte prosím polohové služby</string>
     <string name="no_app_installed">Není nainstalována žádná aplikace</string>
+    <string name="title_open_link">Otevřít odkaz</string>
+    <string name="text_open_link">Otevřít v externím prohlížeči? %s</string>
+    <string name="text_warning_link">VAROVÁNÍ: Tento odkaz není zabezpečený!</string>
+    <string name="dialog_StarOnGitHub">Líbí se vám tato aplikace? Dejte jí prosím hvězdičku na GitHubu nebo kupte vývojáři kávu přes PayPal.</string>
+    <string name="dialog_Later_button">Možná později</string>
 </resources>
