@@ -1,7 +1,10 @@
-apply plugin: 'com.android.application'
+plugins {
+    alias(libs.plugins.android.application)
+}
 
 android {
-    compileSdk 34
+    namespace "us.spotco.maps"
+    compileSdk 36
     dependenciesInfo {
         // Disable including dependency metadata when building APKs
         includeInApk = false
@@ -11,7 +14,7 @@ android {
     defaultConfig {
         applicationId "us.spotco.maps"
         minSdkVersion 21
-        targetSdk 34
+        targetSdk 36
         versionCode 42
         versionName "4.2"
     }
@@ -19,14 +22,15 @@ android {
         debug {
             applicationIdSuffix ".debug"
             minifyEnabled true
-            zipAlignEnabled true
         }
         release {
             shrinkResources true
             minifyEnabled true
-            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    buildFeatures {
+        buildConfig = true
     }
     lintOptions {
         abortOnError false
