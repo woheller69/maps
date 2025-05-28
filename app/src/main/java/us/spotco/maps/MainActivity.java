@@ -20,6 +20,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -442,20 +443,31 @@ public class MainActivity extends Activity {
 
     private void initShareLinkListener() {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        clipboard.addPrimaryClipChangedListener(new ClipboardManager.OnPrimaryClipChangedListener() {
-            @Override
-            public void onPrimaryClipChanged() {
-                String url = mapsWebView.getUrl();
-                String regex = "@(-?d*\\d+.\\d+),(-?d*\\d+.\\d+)";
-                Pattern p = Pattern.compile(regex);
-                Matcher m = p.matcher(url);
-                if (m.find()) {
-                    String latlon = m.group(1) + "," + m.group(2);
-                    try {
+        clipboard.addPrimaryClipChangedListener(() -> {
+            if (!clipboard.hasPrimaryClip()) return;
+
+            ClipDescription description = clipboard.getPrimaryClipDescription();
+            if (description == null) return;
+
+            // Only process plain text
+            if (description.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
+                try {
+                    CharSequence copiedText = clipboard.getPrimaryClip().getItemAt(0).getText();
+                    if (copiedText == null) return;
+
+                    // Match coordinates in copied text (e.g., "40.7128,74.0060" or "40.7128 -74.006")
+                    Pattern p = Pattern.compile("(-?\\d*\\.\\d+),\\s*(-?\\d*\\.\\d+)");
+                    Matcher m = p.matcher(copiedText);
+
+                    if (m.find()) {
+                        String latlon = m.group(1) + "," + m.group(2);
                         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latlon + "?q=" + latlon)));
-                    } catch (ActivityNotFoundException ignored) {
-                        Toast.makeText(context, R.string.no_app_installed, Toast.LENGTH_SHORT).show();
                     }
+                } catch (ActivityNotFoundException e) {
+                    // Show "No app installed" message if no app can handle the geo intent
+                    Toast.makeText(context, R.string.no_app_installed, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Log.e(TAG, "Error processing clipboard content", e);
                 }
             }
         });
