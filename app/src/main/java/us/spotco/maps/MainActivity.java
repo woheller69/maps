@@ -20,6 +20,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ClipData;
 import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -461,7 +462,9 @@ public class MainActivity extends Activity {
 
                     if (m.find()) {
                         String latlon = m.group(1) + "," + m.group(2);
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("geo:" + latlon + "?q=" + latlon)));
+                        String clipContent = "geo:" + latlon + "?q=" + latlon;
+                        ClipData newClip = ClipData.newPlainText("Geo URI", clipContent);
+                        clipboard.setPrimaryClip(newClip);
                     }
                 } catch (ActivityNotFoundException e) {
                     // Show "No app installed" message if no app can handle the geo intent
