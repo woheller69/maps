@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="intent_string">Openen in beperkte Webview</string>
+    <string name="title_location_permission">Locatierechten</string>
+    <string name="text_location_permission">A.u.b. locatierechten toekennen en deze knop opnieuw indrukken.</string>
+    <string name="error_no_gps">A.u.b. GPS activeren</string>
+    <string name="no_app_installed">Geen app is geïnstalleerd</string>
+    <string name="title_open_link">Link openen</string>
+    <string name="text_open_link">Openen in externe webbrowser? %s</string>
+    <string name="text_warning_link">WAARSCHUWING: Deze link is niet veilig!</string>
+    <string name="dialog_StarOnGitHub">Vind je deze app leuk of handig? Geef een ster op GitHub of doneer een koffie aan de ontwikkelaar via PayPal.</string>
+    <string name="dialog_Later_button">Misschien later</string>
+</resources>
