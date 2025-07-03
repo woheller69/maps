@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name" translatable="false">GMaps WV</string>
-    <string name="intent_string">Open in restricted webview</string>
-    <string name="title_location_permission">Location permission</string>
-    <string name="text_location_permission">Please grant location permission and press button again.</string>
-    <string name="error_no_gps">Please activate GPS</string>
-    <string name="no_app_installed">No app installed</string>
-    <string name="title_open_link">Open link</string>
-    <string name="text_open_link">Open in external browser? %s</string>
-    <string name="text_warning_link">WARNING: This link is not secure!</string>
-    <string name="dialog_StarOnGitHub">Do you like this app? Please give a star on GitHub or buy the developer a coffee via PayPal.</string>
-    <string name="dialog_Later_button">Maybe later</string>
+    <string name="intent_string">Åbn i begrænset webvisning</string>
+    <string name="title_location_permission">Placeringstilladelse</string>
+    <string name="text_location_permission">Giv venligst tilladelse til placering, og tryk på knappen igen.</string>
+    <string name="error_no_gps">Aktiver venligst GPS'en</string>
+    <string name="no_app_installed"Ingen app installeret</string>
+    <string name="title_open_link">Åben link</string>
+    <string name="text_open_link">Åben i ekstern browser?%s</string>
+    <string name="text_warning_link">ADVARSEL: Dette link er ikke sikkert!</string>
+    <string name="dialog_StarOnGitHub">Kan du lide denne app? Giv den en stjerne på GitHub, eller køb en kop kaffe til udvikleren via PayPal.</string>
+    <string name="dialog_Later_button">Måske senere</string>
 </resources>
