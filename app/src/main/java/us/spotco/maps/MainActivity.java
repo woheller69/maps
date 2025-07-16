@@ -49,6 +49,7 @@ import android.widget.Toast;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,7 +84,7 @@ public class MainActivity extends Activity {
         if (canUseLocation) {
             locationListenerGPS = getNewLocationListener();
             locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 0, locationListenerGPS);
             }
         }
@@ -444,35 +445,35 @@ public class MainActivity extends Activity {
 
     private void initShareLinkListener() {
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        clipboard.addPrimaryClipChangedListener(() -> {
+        AtomicReference<ClipboardManager.OnPrimaryClipChangedListener> listenerRef = new AtomicReference<>();
+
+        ClipboardManager.OnPrimaryClipChangedListener listener = () -> {
             if (!clipboard.hasPrimaryClip()) return;
 
             ClipDescription description = clipboard.getPrimaryClipDescription();
-            if (description == null) return;
+            if (description == null || !description.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) return;
 
-            // Only process plain text
-            if (description.hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
-                try {
-                    CharSequence copiedText = clipboard.getPrimaryClip().getItemAt(0).getText();
-                    if (copiedText == null) return;
+            try {
+                CharSequence copiedText = clipboard.getPrimaryClip().getItemAt(0).getText();
+                if (copiedText == null) return;
 
-                    // Match coordinates in copied text (e.g., "40.7128,74.0060" or "40.7128 -74.006")
-                    Pattern p = Pattern.compile("(-?\\d*\\.\\d+),\\s*(-?\\d*\\.\\d+)");
-                    Matcher m = p.matcher(copiedText);
+                Pattern p = Pattern.compile("(-?\\d+\\.\\d+),\\s*(-?\\d+\\.\\d+)");
+                Matcher m = p.matcher(copiedText);
 
-                    if (m.find()) {
-                        String latlon = m.group(1) + "," + m.group(2);
-                        String clipContent = "geo:" + latlon + "?q=" + latlon;
-                        ClipData newClip = ClipData.newPlainText("Geo URI", clipContent);
-                        clipboard.setPrimaryClip(newClip);
-                    }
-                } catch (ActivityNotFoundException e) {
-                    // Show "No app installed" message if no app can handle the geo intent
-                    Toast.makeText(context, R.string.no_app_installed, Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Log.e(TAG, "Error processing clipboard content", e);
+                if (m.find()) {
+                    String latlon = m.group(1) + "," + m.group(2);
+                    String clipContent = "geo:" + latlon + "?q=" + latlon;
+
+                    clipboard.removePrimaryClipChangedListener(listenerRef.get());
+                    clipboard.setPrimaryClip(ClipData.newPlainText("Geo URI", clipContent));
+                    clipboard.addPrimaryClipChangedListener(listenerRef.get());
                 }
+            } catch (Exception e) {
+                Log.e(TAG, "Error processing clipboard", e);
             }
-        });
+        };
+
+        listenerRef.set(listener);
+        clipboard.addPrimaryClipChangedListener(listener);
     }
 }
