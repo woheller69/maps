@@ -31,6 +31,8 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Window;
@@ -463,10 +465,10 @@ public class MainActivity extends Activity {
                 if (m.find()) {
                     String latlon = m.group(1) + "," + m.group(2);
                     String clipContent = "geo:" + latlon + "?q=" + latlon;
-
                     clipboard.removePrimaryClipChangedListener(listenerRef.get());
                     clipboard.setPrimaryClip(ClipData.newPlainText("Geo URI", clipContent));
-                    clipboard.addPrimaryClipChangedListener(listenerRef.get());
+                    Handler handler = new Handler(Looper.getMainLooper());
+                    handler.postDelayed(() -> clipboard.addPrimaryClipChangedListener(listenerRef.get()),500);
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Error processing clipboard", e);
