@@ -1,1 +1,13 @@
-
+<resources>
+    <string name="app_name" translatable="false">GMaps WV</string>
+    <string name="intent_string">在受限的webview中開啟</string>
+    <string name="title_location_permission">位置權限</string>
+    <string name="text_location_permission">請授予位置權限並再次按下按鈕。</string>
+    <string name="error_no_gps">請啟用GPS</string>
+    <string name="no_app_installed">未安裝任何應用程式</string>
+    <string name="title_open_link">開啟連結</string>
+    <string name="text_open_link">以外部瀏覽器開啟？ %s</string>
+    <string name="text_warning_link">警告：此連結不安全！</string>
+    <string name="dialog_StarOnGitHub">你喜歡本應用嗎？請在 GitHub 上給一個星星或透過 PayPal 給開發者買一杯咖啡。</string>
+    <string name="dialog_Later_button">可能以後</string>
+</resources>
