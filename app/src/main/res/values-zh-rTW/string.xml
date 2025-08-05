@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">GMaps WV</string>
     <string name="intent_string">在受限的webview中開啟</string>
     <string name="title_location_permission">位置權限</string>
     <string name="text_location_permission">請授予位置權限並再次按下按鈕。</string>

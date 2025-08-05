@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">GMaps WV</string>
     <string name="intent_string">Åbn i begrænset webvisning</string>
     <string name="title_location_permission">Placeringstilladelse</string>
     <string name="text_location_permission">Giv venligst tilladelse til placering, og tryk på knappen igen.</string>

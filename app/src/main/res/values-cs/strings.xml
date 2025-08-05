@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">GMaps WV</string>
     <string name="intent_string">Otevřít v omezeném webovém zobrazení</string>
     <string name="title_location_permission">Přístup k poloze</string>
     <string name="text_location_permission">Udělte přístup oprávnění k poloze a znovu stiskněte tlačítko.</string>

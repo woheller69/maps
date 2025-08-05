@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 34
+    compileSdk 35
+    namespace 'us.spotco.maps'
+    android.buildFeatures.buildConfig true
     dependenciesInfo {
         // Disable including dependency metadata when building APKs
         includeInApk = false
@@ -11,9 +13,9 @@ android {
     defaultConfig {
         applicationId "us.spotco.maps"
         minSdkVersion 21
-        targetSdk 34
-        versionCode 44
-        versionName "4.4"
+        targetSdk 35
+        versionCode 45
+        versionName "4.5"
     }
     buildTypes {
         debug {
