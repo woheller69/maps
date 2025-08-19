@@ -50,6 +50,7 @@ Translations
 - Chinese (Simplified): Crit
 - Croatian: lukapiplica
 - Czech: Fjuro
+- Danish: Hans-Jørgen Martinus Vork Rosenwein
 - Estonian: Priit Jõerüüt
 - Finnish: huuhaa
 - French: cultrarius
