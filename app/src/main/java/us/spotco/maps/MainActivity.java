@@ -26,6 +26,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -47,6 +48,9 @@ import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import androidx.webkit.WebSettingsCompat;
+import androidx.webkit.WebViewFeature;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -93,10 +97,16 @@ public class MainActivity extends Activity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            setTheme(android.R.style.Theme_DeviceDefault_DayNight);
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        if(WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING) && Build.VERSION.SDK_INT >= 29) {
+            boolean nightMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+            WebSettingsCompat.setAlgorithmicDarkeningAllowed(mapsWebSettings, nightMode);
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
@@ -307,6 +317,10 @@ public class MainActivity extends Activity {
 
         //Set more options
         mapsWebSettings = mapsWebView.getSettings();
+        if(WebViewFeature.isFeatureSupported(WebViewFeature.ALGORITHMIC_DARKENING) && Build.VERSION.SDK_INT >= 29) {
+            boolean nightMode = (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
+            WebSettingsCompat.setAlgorithmicDarkeningAllowed(mapsWebSettings, nightMode);
+        }
         //Enable some WebView features
         mapsWebSettings.setJavaScriptEnabled(true);
         mapsWebSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
