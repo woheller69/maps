@@ -52,6 +52,7 @@ import android.widget.Toast;
 import androidx.webkit.WebSettingsCompat;
 import androidx.webkit.WebViewFeature;
 
+import org.woheller69.freeDroidWarn.FreeDroidWarn;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -338,6 +339,7 @@ public class MainActivity extends Activity {
 
         //Load Google Maps
         mapsWebView.loadUrl(urlToLoad);
+        FreeDroidWarn.showWarningOnUpgrade(this, BuildConfig.VERSION_CODE);
         if (GithubStar.shouldShowStarDialog(this)) GithubStar.starDialog(this, "https://github.com/woheller69/maps");
     }
 
