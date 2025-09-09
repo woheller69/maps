@@ -1,1 +1,2 @@
+Automatic night mode
 Deprecation warning
