@@ -14,8 +14,8 @@ android {
         applicationId "us.spotco.maps"
         minSdkVersion 21
         targetSdk 35
-        versionCode 46
-        versionName "4.6"
+        versionCode 47
+        versionName "4.7"
     }
     buildTypes {
         debug {
@@ -38,5 +38,5 @@ android {
 
 dependencies {
     implementation 'androidx.webkit:webkit:1.5.0'
-    implementation 'com.github.woheller69:FreeDroidWarn:+'
+    implementation 'com.github.woheller69:FreeDroidWarn:V1.5'
 }

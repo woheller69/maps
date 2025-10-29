@@ -1,0 +1,2 @@
+FeatureGraphic added
+Updated deprecation warning
