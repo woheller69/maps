@@ -475,7 +475,7 @@ public class MainActivity extends Activity {
                 CharSequence copiedText = clipboard.getPrimaryClip().getItemAt(0).getText();
                 if (copiedText == null) return;
 
-                Pattern p = Pattern.compile("(-?\\d+\\.\\d+),\\s*(-?\\d+\\.\\d+)");
+                Pattern p = Pattern.compile("!3d(-?\\d+\\.\\d+)!4d(-?\\d+\\.\\d+)"); //POI location is not after the @! It is !3d(lat)!4d(lon)
                 Matcher m = p.matcher(copiedText);
 
                 if (m.find()) {
