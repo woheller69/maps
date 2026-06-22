@@ -25,6 +25,7 @@ import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.location.LocationListener;
@@ -77,6 +78,8 @@ public class MainActivity extends Activity {
     private static LocationListener locationListenerGPS;
     private static final boolean canUseLocation = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
     private static int locationRequestCount = 0;
+    private static final String PREF_FILE = "maps_prefs";
+    private static final String KEY_LANGUAGE = "saved_language";
 
     @Override
     protected void onPause() {
@@ -125,6 +128,16 @@ public class MainActivity extends Activity {
             }
         } catch (Exception e) {
             Log.d(TAG, "No or Invalid URL passed. Opening homepage instead.");
+        }
+
+        // Append saved language if available (only if user hasn’t explicitly provided a URL with hl=)
+        if (getSavedLanguage() != null) {
+            // Avoid duplication: only append if no hl= exists yet in URL
+            if (!urlToLoad.contains("&hl=") && !urlToLoad.contains("?hl=")) {
+                String separator = (urlToLoad.contains("?")) ? "&" : "?";
+                urlToLoad += separator + "hl=" + getSavedLanguage();
+                Log.d(TAG, "Appending saved language: " + urlToLoad);
+            }
         }
 
         //Create the WebView
@@ -300,6 +313,10 @@ public class MainActivity extends Activity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
+
+                //Save language if present
+                saveSelectedLanguage(url);
+
                 //Remove Banner
                 view.evaluateJavascript("var head = document.getElementsByTagName('head');\n" +
                         "if (head.length > 0) {\n" +
@@ -494,4 +511,24 @@ public class MainActivity extends Activity {
         listenerRef.set(listener);
         clipboard.addPrimaryClipChangedListener(listener);
     }
+
+    private void saveSelectedLanguage(String url) {
+        if (url == null || url.isEmpty()) return;
+
+        // Extract ?hl=XX or &hl=XX pattern (case-insensitive, optional = followed by 2-letter lang or full code)
+        // e.g., ?hl=de, &HL=en-US, etc.
+        Pattern p = Pattern.compile("[?&]hl=([a-zA-Z]{2,}(?:-[a-zA-Z]{2})?)");
+        Matcher m = p.matcher(url);
+        if (m.find()) {
+            String lang = m.group(1).toLowerCase();
+            SharedPreferences prefs = context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
+            prefs.edit().putString(KEY_LANGUAGE, lang).apply();
+        }
+    }
+
+    private String getSavedLanguage() {
+        SharedPreferences prefs = context.getSharedPreferences(PREF_FILE, Context.MODE_PRIVATE);
+        return prefs.getString(KEY_LANGUAGE, null);
+    }
+
 }
