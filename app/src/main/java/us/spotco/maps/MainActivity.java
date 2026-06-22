@@ -237,7 +237,11 @@ public class MainActivity extends Activity {
                 }
                 if (request.getUrl().toString().startsWith("tel:")) {
                     Intent dial = new Intent(Intent.ACTION_DIAL, request.getUrl());
-                    startActivity(dial);
+                    try {
+                        startActivity(dial);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(context, R.string.no_app_installed, Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
                 if (!request.getUrl().toString().startsWith("https://")) {
@@ -259,8 +263,13 @@ public class MainActivity extends Activity {
                             .setNegativeButton(android.R.string.cancel, null)
                             .setPositiveButton(
                                     android.R.string.ok,
-                                    (dialogInterface, i) ->
-                                            startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()))
+                                    (dialogInterface, i) -> {
+                                        try {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()));
+                                        } catch (ActivityNotFoundException e) {
+                                            Toast.makeText(context, R.string.no_app_installed, Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
                             )
                             .create()
                             .show();
@@ -292,8 +301,13 @@ public class MainActivity extends Activity {
                             .setNegativeButton(android.R.string.cancel, null)
                             .setPositiveButton(
                                 android.R.string.ok,
-                                (dialogInterface, i) ->
-                                    startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()))
+                                (dialogInterface, i) -> {
+                                    try {
+                                        startActivity(new Intent(Intent.ACTION_VIEW, request.getUrl()));
+                                    } catch (ActivityNotFoundException e) {
+                                        Toast.makeText(context, R.string.no_app_installed, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             )
                             .create()
                             .show();
