@@ -56,6 +56,7 @@ import org.woheller69.freeDroidWarn.FreeDroidWarn;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -113,7 +114,18 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String urlToLoad = "https://www.google.com/maps";
+        Locale locale = Locale.getDefault();
+        String language = locale.getLanguage();
+        String country = locale.getCountry();
+        if (language.isEmpty()) {
+            language = "en";
+        }
+        String hl = "hl=" + language;
+        if (!country.isEmpty()) {
+            hl += "-" + country;
+        }
+
+        String urlToLoad = "https://www.google.com/maps?" + hl;
         try {
             Intent intent = getIntent();
             Uri data = intent.getData();
@@ -121,7 +133,7 @@ public class MainActivity extends Activity {
             if (data.toString().startsWith("https://")) {
                 urlToLoad = data.toString();
             } else if (data.toString().startsWith("geo:")) {
-                urlToLoad = "https://www.google.com/maps/place/" + data.toString().substring(4);
+                urlToLoad = "https://www.google.com/maps/place/" + data.toString().substring(4) + "&" + hl;
             }
         } catch (Exception e) {
             Log.d(TAG, "No or Invalid URL passed. Opening homepage instead.");
