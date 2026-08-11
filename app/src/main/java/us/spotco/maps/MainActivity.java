@@ -341,6 +341,9 @@ public class MainActivity extends Activity {
                         "    }\n" +
                         "    #app {\n" +
                         "        top: 0 !important\n" +
+                        "    }\n" +
+                        "    #google-feedback, #google-feedback-submit-frame {\n" +
+                        "        display: none !important;\n" +
                         "    }`;\n" +
                         "    head[0].appendChild(style);\n" +
                         "}",null);
