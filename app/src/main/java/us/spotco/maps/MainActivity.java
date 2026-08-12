@@ -432,7 +432,7 @@ public class MainActivity extends Activity {
         allowedDomains.add("maps.google.com");
         allowedDomains.add("maps.gstatic.com");
         allowedDomains.add("ssl.gstatic.com");
-        allowedDomains.add("streetviewpixels-pa.googleapis.com");
+        allowedDomainsStart.add("streetviewpixels");
         allowedDomains.add("www.google.com");
         allowedDomains.add("www.gstatic.com");
         allowedDomainsStart.add("consent.google."); //TODO: better cctld handling
